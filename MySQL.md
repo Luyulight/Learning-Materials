@@ -325,3 +325,117 @@ DELETE FORM tablename [WHERE sentences];
 
 ## 8.MySQL函数
 
+### 8.1 数学函数
+
+```JAVA
+ABS(x) 绝对值
+CEIL(x) 和 CEILING(x) 大于或等于x的最小整数
+FLOOR(x) 小于或等于x的最大整数
+RAND() 和 RAND(x) 0-1的随机数 RAND(x1)=RAND(x1)
+SIGN(x) 返回符号
+PI() 圆周率
+TRUNCATE(x,y) 保留x到y位小数
+ROUND(x) x最近的整数
+ROUND(x,y) x到y位小数的值（四舍五入）
+SQRT(x) 平方根 MOD(x,y) x/y的余数
+POW(x,y) 或 POWER(x,y) x的y次方
+EXP(x) e的x次方
+```
+
+### 8.2字符串函数
+
+```java
+CHAR_LENGTH(s) 字符串字符数
+LENGTH(s) 字符串长度
+CONCAT(s1,s2,...) 合并字符串
+CONCAT_WS(x,s1,s2,...) 合并并用x隔开
+INSERT(s1,x,len,s2) s1中x(0开始)位置开始长度为len的字符串替换为s2
+UPPER(s) 和 UCASE(s) 转大写 
+LOWER(s) 和 LCASE(s) 转小写
+LEFT(s,n) s的前n个字符  RIGHT(s,n) s的后n个字符
+LPAD(s1,len,s2) s2填充到s1头部使长度到len, 如果不够则重复s2，超出则截断s2
+RPAD(s1,len,s2) s2填充到s1尾部使长度到len, 如果不够则重复s2，超出则截断s2
+LTRIM(s) 去掉s头部的空格 RTRIM(s) 去尾部空格 TRIM(s) 去掉s前后空格
+TRIM(s1 FROM s) 去掉s头尾的s1（可能是多个连续的s1）
+REPEAT(s,n) s重复n次
+SPACE(n) 返回n个空格
+REPLACE(s,s1,s2) s2替换s中的s1
+STRCMP(s1,s2) 比较字符串s1,s2的大小并返回（1,0，-1）
+SUBSTRING(s,n,len) 从s的第n个位置开始获取长度为len的字符串
+MID(s,n,len) 同SUBSTRING
+LOCATE(s1,s) , POSITION(s1 IN s) , INSTR(s,s1) 从s中获取s1开始的位置
+REVERSE(s) 字符串s逆序
+ELT(n,s1,s2,...) 返回第n个字符串sn
+FIELD(s,s1,s2,...) 返回第一个与s匹配的字符串的位置（从1开始）
+FIND_IN_SET(s1,s2) :{
+    FIND_IN_SET('like','i,like,bei,jing')=2,
+}
+MAKE_SET(x,s1,s2,...)按X的二进制数从右到左数来取字符串：{
+   	MAKE_SET(11,'a','b','c','d') 11=1011 所以取a,b,d  
+}
+```
+
+### 8.3日期与时间函数
+
+```java
+//获取日期时间季度星期的函数略
+TIME_TO_SEC(t) SEC_TO_TIME(t) 时间和秒钟转换
+DATEDIFF(d1,d2) d1,d2之间隔的天数
+ADDDATE(d,n) 加天数 SUBDATE(d,n) 减天数 ADDTIME(t,n) 加秒 SUBTIME(t,n) 减秒
+ADDDATE(d,INTERVAL expr type) 和 DATE_ADD(d,INTERVAL expr type) \
+SUBDATE(d,INTERVAL expr type)
+ADDDATE(dt,INTERVAL '1 1' YEAR_MONTH)
+```
+
+![img](file:///C:\Users\Seattle\Documents\Tencent Files\835228063\Image\Group\V3_444}3I[~7[3`_TC~D2S5.jpg)
+
+```java
+DATE_FORMAT(d,f) 按f格式化d
+TIME_FORMAT(t,f) --
+```
+
+### 8.4条件判断函数
+
+```java
+IF(expr,v1,v2) expr?v1:v2
+IFNULL(v1,v2)  v1?v1:v2
+CASE [WHEN expr1 THEN v1 ...WHEN exprN THEN vn][ELSE vn+1] END
+CASE expr [WHEN e1 THEN v1...][ELSE vn] END
+```
+
+### 8.5系统信息函数
+
+```mysql
+VERSION(), CONNECTION_ID(),DATABASE(),SCHEMA()
+USER(),SYSTEM_USER(),SESSION_USER(),CURRENT_USER(),CURRENT_USER()
+CHARSET(str),COLLATION(str)
+LAST_INSERT_ID()
+```
+
+### 8.6加密函数
+
+```mysql
+PASSWORD(str) 不可逆
+MD5(str) 
+ENCODE(str,pswd_str)用pswd_str加密str
+DECODE(crypt_str,pswd_str)
+```
+
+### 8.7其他
+
+```java
+FORMAT(x,n) 保留x的n位小数
+ASCII(s) s第一个字符的ASCII码
+BIN(x) 返回x的二进制码
+HEX(x) 十六进制
+OCT(x) 八进制
+CONV(x,f1,f2) x从f1进制变成f2进制
+INET_ATON('IP') INET_NTOA(n) IP地址和数字转换
+GET_LOCT(name,time) 成功1 超时0 错误NULL
+RELEASE_LOCK(name)  成功1 超时0 错误NULL
+FREE_LOCK(name) 判断是否使用名为name的锁 使用0,未使用1
+BENCHMARK(count,expr) 重复expr count次然后返回执行时间
+CONVERT(s USING cs) s字符集改为cs
+CAST(x AS type) 将字段x变为type类型 同 CONVERT(x,type)
+```
+
